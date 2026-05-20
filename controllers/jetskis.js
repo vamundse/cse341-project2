@@ -11,7 +11,7 @@ const getAllJetskis = async (req, res) => {
 };
 
 const getOneJetski = async (req, res) => {
-    const jetskiId = new ObjectId(req.param.id);
+    const jetskiId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('jetskis').find({_id: jetskiId});
     result.toArray().then((jetskis) => {
         res.setHeader('Content-Type', 'application/json');
