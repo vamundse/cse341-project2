@@ -1,10 +1,10 @@
-const routes = require('express').Router();
+const router = require('express').Router();
 const jetskisController = require('../controllers/jetskis')
 
-routes.get('/', jetskisController.getAll);
-routes.get('/:id', jetskisController.getOne);
-routes.post('/', boatsController.addBoat);
-routes.put('/:id', boatsController.updateBoat);
-routes.delete('/:id', boatsController.deleteBoat);
+router.get('/', jetskisController.getAllJetskis);
+router.get('/:id', jetskisController.getOneJetski);
+router.post('/', jetskisController.addJetski);
+router.put('/:id', jetskisController.updateJetski);
+router.delete('/:id', jetskisController.deleteJetski);
 
-module.exports = routes;
+module.exports = router;
