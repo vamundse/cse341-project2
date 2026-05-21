@@ -24,6 +24,10 @@ const getAllBoats = async (req, res) => {
 const getOneBoat = async (req, res) => {
     try {
 
+        if (!objectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'You must enter a valid boat id' })
+        }
+
         const boatId = new ObjectId(req.params.id);
         const result = await mongodb.getDatabase().db().collection('boats').find({_id: boatId});
         const boats = await result.toArray();
@@ -69,6 +73,10 @@ const addBoat = async (req, res) => {
 const updateBoat = async (req, res) => {
     try {
 
+        if (!objectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'You must enter a valid boat id' })
+        }
+
         const boatId = new ObjectId(req.params.id);
         const boat = {
             brand: req.body.brand,
@@ -97,6 +105,10 @@ const updateBoat = async (req, res) => {
 
 const deleteBoat = async (req, res) => {
     try {
+
+        if (!objectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'You must enter a valid boat id' })
+        }
 
         const boatId = new ObjectId(req.params.id);
         const response = await mongodb.getDatabase().db().collection('boats').deleteOne({_id: boatId});

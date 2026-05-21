@@ -4,7 +4,7 @@ const objectId = require('mongodb').ObjectId;
 
 const getAllJetskis = async (req, res) => {
     try {
-        
+
         const result = await mongodb.getDatabase().db().collection('jetskis').find();
         const jetskis = await result.toArray();
 
@@ -24,6 +24,10 @@ const getAllJetskis = async (req, res) => {
 
 const getOneJetski = async (req, res) => {
     try {
+
+        if (!objectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'You must enter a valid jetski id' })
+        }
 
         const jetskiId = new ObjectId(req.params.id);
         const result = await mongodb.getDatabase().db().collection('jetskis').find({_id: jetskiId});
@@ -70,6 +74,10 @@ const addJetski = async (req, res) => {
 const updateJetski = async (req, res) => {
     try {
 
+        if (!objectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'You must enter a valid jetski id' })
+        }
+
         const jetskiId = new ObjectId(req.params.id);
         const jetski = {
         brand: req.body.brand,
@@ -98,6 +106,10 @@ const updateJetski = async (req, res) => {
 const deleteJetski = async (req, res) => {
     try {
     
+        if (!objectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'You must enter a valid jetski id' })
+        }
+
         const jetskiId = new ObjectId(req.params.id);
         const response = await mongodb.getDatabase().db().collection('jetskis').deleteOne({_id: jetskiId});
 
