@@ -116,7 +116,7 @@ const deleteBoat = async (req, res) => {
         if (response.deletedCount > 0) {
             return res.status(204).send();
         } else {
-            return res.status(500).json("Some error occured while updating the boat.");
+            return res.status(404).json("Could not find the boat to be deleted.");
         }
 
     } catch(error) {

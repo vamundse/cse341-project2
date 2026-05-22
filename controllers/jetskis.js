@@ -117,7 +117,7 @@ const deleteJetski = async (req, res) => {
             return res.status(204).send();
         } else {
             console.log('Error while deleting jetski');
-            return res.status(404).json({ message: 'The jetski could not be deleted' });
+            return res.status(404).json({ message: 'Could not find the to be deleted' });
         }
 
     } catch(error) {
