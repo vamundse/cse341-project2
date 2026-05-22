@@ -13,7 +13,7 @@ const getAllBoats = async (req, res) => {
         }
 
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(boats);
+        return res.status(200).json(boats);
 
     } catch(error) {
         console.log('Error fetching boats', error);
@@ -37,7 +37,7 @@ const getOneBoat = async (req, res) => {
         }
 
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(boats[0]);
+        return res.status(200).json(boats[0]);
 
     } catch (error) {
         console.log('Error fetching the specific boat', error);
@@ -61,7 +61,7 @@ const addBoat = async (req, res) => {
 
         const response = await mongodb.getDatabase().db().collection('boats').insertOne(boat);
         if (response.acknowledged) {
-            res.status(201).send();
+            return res.status(201).send();
         }
     
     } catch(error) {
