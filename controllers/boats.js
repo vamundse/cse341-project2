@@ -60,7 +60,7 @@ const addBoat = async (req, res) => {
         }
 
         const response = await mongodb.getDatabase().db().collection('boats').insertOne(boat);
-        if (result.acknowledged) {
+        if (response.acknowledged) {
             res.status(201).send();
         }
     
