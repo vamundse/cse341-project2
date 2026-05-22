@@ -1,16 +1,26 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Boat and Jetski inventory",
-    "description": "",
+    "title": "Inventory",
+    "description": "Get your boats and jetskis here!",
     "version": "1.0.0"
   },
-  "host": "cse341-project2-odxe.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/boats/": {
       "get": {
         "description": "",
@@ -185,6 +195,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
