@@ -5,9 +5,9 @@ const app = express();
 
 const port = process.env.PORT;
 
+app.use(bodyParser.json());
 app.use('/api-docs', require('./routes/swagger'));
 app.use('/', require('./routes'));
-app.use(bodyParser.json());
 
 process.on('uncaughtException', (err, origin) => {
     console.error(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin} `);
