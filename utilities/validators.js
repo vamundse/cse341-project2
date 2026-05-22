@@ -50,37 +50,45 @@ const boatAddValidationRules = () => {
 const boatEditValidationRules = () => {
     return [
         body('brand')
+        .optional()
         .isString()
         .withMessage('Brand must be a string')
         .isLength({ min: 3 })
         .withMessage('Brand must be minimum three characters'),
         body('model')
+        .optional()
         .isString()
         .withMessage('Model must be a string')
         .isLength({ min: 3 })
         .withMessage('Model must be minimum three characters'),
         body('year')
+        .optional()
         .isInt({ min: 1900, max: 2100})
         .withMessage('The year must be a 4-digit number'),
         body('type')
+        .optional()
         .isString()
         .withMessage('Type must be a string')
         .isLength({ min: 3 })
         .withMessage('Type must be minimum three characters'),
         body('class')
+        .optional()
         .isString()
         .withMessage('Class must be a string')
         .isLength({ min: 3 })
         .withMessage('Class must be minimum three characters'),
         body('length')
+        .optional()
         .isString()
         .withMessage('Length must be a string'),
         body('fuel')
+        .optional()
         .isString()
         .withMessage('Fuel must be a string')
         .isLength({ min: 3 })
         .withMessage('Fuel must be minimum three characters'),
         body('material')
+        .optional()
         .isString()
         .withMessage('Material must be a string')
         .isLength({ min: 3 })
@@ -135,36 +143,43 @@ const jetskiAddValidationRules = () => {
 const jetskiEditValidationRules = () => {
     return [
         body('brand')
+        .optional()
         .isString()
         .withMessage('Brand must be a string')
         .isLength({ min: 3 })
         .withMessage('Brand must be minimum three characters'),
         body('model')
+        .optional()
         .isString()
         .withMessage('Model must be a string')
         .isLength({ min: 3 })
         .withMessage('Model must be minimum three characters'),
         body('horsepower')
+        .optional()
         .isString()
         .withMessage('Horsepower must be a string')
         .isLength({ min: 3 })
         .withMessage('Horsepower must be minimum three characters'),
         body('weight')
+        .optional()
         .isString()
         .withMessage('Weight must be a string')
         .isLength({ min: 3 })
         .withMessage('Weight must be minimum three characters'),
         body('storage')
+        .optional()
         .isString()
         .withMessage('Storage must be a string')
         .isLength({ min: 3 })
         .withMessage('Storage must be minimum three characters'),
         body('persons')
+        .optional()
         .isString()
         .withMessage('Persons must be a string')
         .isLength({ min: 3 })
         .withMessage('Persons must be minimum three characters'),
         body('fueltank')
+        .optional()
         .isString()
         .withMessage('Fueltank must be a string')
         .isLength({ min: 3 })
