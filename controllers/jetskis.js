@@ -79,17 +79,16 @@ const updateJetski = async (req, res) => {
         }
 
         const jetskiId = new ObjectId(req.params.id);
-        const jetski = {
-        brand: req.body.brand,
-        model: req.body.model,
-        horsepower: req.body.horsepower,
-        weight: req.body.weight,
-        storage: req.body.storage,
-        persons: req.body.persons,
-        fueltank: req.body.fueltank
-        }
+        const jetski = {};
+        if (req.body.brand) jetski.brand = req.body.brand;
+        if (req.body.model) jetski.model = req.body.model;
+        if (req.body.horsepower) jetski.horsepower = req.body.horsepower;
+        if (req.body.weight) jetski.weight = req.body.weight;
+        if (req.body.storage) jetski.storage = req.body.storage;
+        if (req.body.persons) jetski.persons = req.body.persons;
+        if (req.body.fueltank) jetski.fueltank = req.body.fueltank;
 
-        const response = await mongodb.getDatabase().db().collection('jetskis').replaceOne({_id: jetskiId}, jetski);
+        const response = await mongodb.getDatabase().db().collection('jetskis').updateOne({_id: jetskiId}, {$set: jetski});
         if (response.modifiedCount > 0) {
             return res.status(204).send();
         } else {

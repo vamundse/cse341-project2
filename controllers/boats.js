@@ -78,18 +78,17 @@ const updateBoat = async (req, res) => {
         }
 
         const boatId = new ObjectId(req.params.id);
-        const boat = {
-            brand: req.body.brand,
-            model: req.body.model,
-            year: req.body.year,
-            type: req.body.type,
-            class: req.body.class,
-            length: req.body.length,
-            fuel: req.body.fuel,
-            material: req.body.material
-        };
+        const boat = {}
+            if (req.body.brand) boat.brand = req.body.brand;
+            if (req.body.model) boat.model = req.body.model;
+            if (req.body.year) boat.year = req.body.year;
+            if (req.body.type) boat.type = req.body.type;
+            if (req.body.class) boat.class = req.body.class;
+            if (req.body.length) boat.length = req.body.length;
+            if (req.body.fuel) boat.fuel = req.body.fuel;
+            if (req.body.material) boat.material = req.body.material;
 
-        const response = await mongodb.getDatabase().db().collection('boats').replaceOne({_id: boatId}, boat);
+        const response = await mongodb.getDatabase().db().collection('boats').updateOne({_id: boatId}, {$set: boat});
         if (response.modifiedCount > 0) {
             return res.status(204).send();
         } else {
