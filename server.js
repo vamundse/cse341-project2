@@ -21,6 +21,8 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('./strategies/google');
+
 app.use('/api-docs', require('./routes/swagger'));
 app.use('/auth', require('./routes/auth'));
 app.use('/', require('./routes'));
