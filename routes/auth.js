@@ -6,7 +6,7 @@ router.get('/auth-google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
-router.get('https://cse341-project2-odxe.onrender.com/auth/auth-google/redirect', passport.authenticate('google', {failureRedirect: '/'}),
+router.get('/auth-google/redirect', passport.authenticate('google', {failureRedirect: '/'}),
 (req, res) => {
     res.redirect('/');
 });
