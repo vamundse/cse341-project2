@@ -1,12 +1,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./data/database');
-const app = express();
+const passport = require('passport');
+const session = require('express-session');
+const cors = require('cors');
+require('dotenv').config();
 
+const app = express();
 const port = process.env.PORT;
 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+}));
+
 app.use(bodyParser.json());
+app.use(cors());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api-docs', require('./routes/swagger'));
+app.use('/auth', require('./routes/auth'));
 app.use('/', require('./routes'));
 
 process.on('uncaughtException', (err, origin) => {
