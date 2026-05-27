@@ -5,6 +5,7 @@ const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
 require('dotenv').config();
+require('./strategies/google');
 
 const app = express();
 const port = process.env.PORT;
@@ -20,8 +21,6 @@ app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use('./strategies/google');
 
 app.use('/api-docs', require('./routes/swagger'));
 app.use('/auth', require('./routes/auth'));
