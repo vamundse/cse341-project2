@@ -8,7 +8,7 @@ router.get('/auth-google', passport.authenticate('google', {
 
 router.get('/auth-google/redirect', passport.authenticate('google', {failureRedirect: '/'}),
 (req, res) => {
-    res.redirect('/');
+    res.json({ message: 'Successfully logged in', user: req.user});
 });
 
 module.exports = router;
