@@ -2,9 +2,13 @@ const router = require('express').Router();
 const passport = require('passport');
 
 router.get('/', (req, res) => {
-    let message = req.session.message;
-    delete req.session.message;
-    res.send(`Hello! ${message}`);
+    if(req.session.message) {
+        let message = req.session.message;
+        delete req.session.message;
+        res.send(`Hello World! ${message}`);
+    } else {
+        res.send('Hello World!')
+    }
 });
 
 router.use('/boats', require('./boats'));
